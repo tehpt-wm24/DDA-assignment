@@ -1,0 +1,4 @@
+insert into customer values(1001, '@gmail.com', null, 'M');
+insert into customer values(1002, '@yahoo.com', null, 'M');
+insert into customer values(1003, '@yahoo.com', null, 'M');
+insert into customer values(1004, '@gmail.com', null, 'F');

@@ -1,0 +1,7 @@
+create table service_procedure (
+	service_proc_no		number(4)	not null,
+	mechanic_id		number(4),
+	其他attribute
+primary key(service_proc_no),
+foreign key(mechanic_id)	references mechanic(mechanic_id)
+);

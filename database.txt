@@ -1,0 +1,55 @@
+select *
+from customer
+where gender = 'F';
+
+SHOW LINESIZE
+
+SET LINESIZE 150
+
+COLUMN CUST_NAME FORMAT A15
+
+SELECT CUST_NO, CUST_NAME, GENDER
+FROM CUSTOMER;
+
+DROP TABLE STAFF;
+
+To Change the column output caption:
+1st Method:
+SELECT CUST_NO as "Customer No#",
+CUST_NAME as "Customer Name", GENDER
+FROM CUSTOMER;
+
+2nd Method:
+Column CustNo Heading 'Customer ID'
+Column CustName Heading 'Name'
+SELECT CUST_NO, CUST_NAME, GENDER
+FROM CUSTOMER;
+
+SELECT *
+FROM FOOD_ORDER;
+
+SELECT
+ORDER_NO, ORDER_DATE, CUST_NO,
+FOOD_AMOUNT, SST, SERVICE_CHARGE,
+FOOD_AMOUNT+SST+SERVICE_CHARGE AS "Final_Total"
+FROM FOOD_ORDER;
+
+column food_amount format 999,999.99
+column sst format 999,990.99
+column SERVICE_CHARGE format 999,990.99
+column final_total format $999,990.99
+
+column cust_no clear
+
+SELECT
+ORDER_NO, ORDER_DATE, CUST_NO,
+FOOD_AMOUNT, SST, SERVICE_CHARGE,
+FOOD_AMOUNT+SST+SERVICE_CHARGE AS "Final_Total"
+FROM FOOD_ORDER
+
+show - Get the system properties value
+set - Change the system properties value
+run - Execute last statement on buffer
+list - Display last statement on buffer
+spool - Copy and paste whatever action or result on screen after
+        spool on

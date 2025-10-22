@@ -1,0 +1,10 @@
+create table service_record (
+	service_rec	number(5)	not null,
+	vehicle_no	varchar(10),
+	service_no	number(4),
+	service_date	date,
+	其他attribute
+primary key(service_rec),
+foreign key(vehicle_no)		references vehicle(vehicle_no),
+foreign key(service_no)		references service(service_no)
+);

@@ -1,0 +1,8 @@
+create table branch (
+	branch_no	number(2)	not null,
+	staff_id	number(4)	not null,
+	branch_date	date,
+	其他attribute
+primary key(branch_no),
+foreign key(staff_id)	references staff_member(staff_id)
+);

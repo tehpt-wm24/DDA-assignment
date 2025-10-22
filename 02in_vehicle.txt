@@ -1,0 +1,4 @@
+insert to vehicle values();
+insert to vehicle values();
+insert to vehicle values();
+insert to vehicle values();

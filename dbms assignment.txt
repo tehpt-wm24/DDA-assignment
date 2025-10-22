@@ -1,0 +1,57 @@
+CLEAR COLUMNS
+CLEAR BREAKS
+CLEAR COMPUTES
+TTITLE OFF
+SET LINESIZE 300
+SET PAGESIZE 5000
+
+TTITLE CENTER 'CUSTOMER SALES REPORT FROM &start_date TO &end_date' SKIP 1 CENTER 'Page: ' FORMAT 999 SQL.PNO SKIP 2
+
+COLUMN Cust_Id FORMAT A6 HEADING 'Customer Id'
+COLUMN Cust_Name FORMAT A20 HEADING 'Customer Name'
+COLUMN Service_Id FORMAT A7 HEADING 'Service Id'
+COLUMN Service_Date FORMAT A11 HEADING 'Service Date'
+COLUMN Quantity_Used FORMAT 999 HEADING 'Total Items'
+COLUMN Unit_Price FORMAT 99999.99 HEADING 'Unit Price (RM)'
+COLUMN Price FORMAT 99999.99 HEADING 'Service Price (RM)'
+COLUMN Total_Price FORMAT 9999999.99 HEADING 'Sum of Price (RM)’
+
+BREAK ON Cust_Id ON Cust_Name ON Service_Id SKIP 1 ON Service_Date
+
+ALTER SESSION SET NLS_DATE_FORMAT = 'DD/MM/YYYY';
+
+SET VERIFY OFF
+
+ACCEPT start_date PROMPT 'Enter the start date (dd/mm/yyyy): ';
+ACCEPT end_date PROMPT 'Enter the end date (dd/mm/yyyy): ';
+SELECT 
+C.Cust_Id, 
+C.Cust_Name, 
+S.Service_Id, 
+S.Price, 
+MR.Service_Date, 
+I.Unit_Price, 
+MRI.Quantity_Used,
+(I.Unit_Price * MRI.Quantity_Used + S.Price) AS Total_Price
+FROM 
+Customer C
+JOIN 
+Vehicle V ON C.Cust_ID = V.Cust_ID
+JOIN 
+Maintenance_Record MR ON V.Vehicle_Id = MR.Vehicle_Id
+JOIN 
+Maintenance_Record_Service MRS ON MR.Record_Id = MRS.Record_Id
+JOIN 
+Service S ON MRS.Service_Id = S.Service_Id
+JOIN 
+Maintenance_Record_Inventory MRI ON MR.Record_Id = MRI.Record_Id
+JOIN 
+Inventory I ON MRI.Inventory_Id = I.Inventory_Id
+WHERE 	
+MR.Service_Date BETWEEN TO_DATE('&start_date', 'dd/mm/yyyy') 
+AND TO_DATE('&end_date', 'dd/mm/yyyy')
+ORDER BY 
+C.Cust_Id, MR.Service_Date;
+CLEAR COLUMNS
+CLEAR BREAK
+TTITLE OFF

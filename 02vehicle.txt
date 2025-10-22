@@ -1,0 +1,9 @@
+create table vehicle (
+	vehicle_no	varchar(10)	not null,
+	cust_no		number(4),
+	quantity	number(2),
+	price		number(8,2),
+	其他attribute
+primary key(vehicle_no),
+foreign key(cust_no)		references customer(cust_no),
+);

@@ -1,0 +1,4 @@
+insert to staff_member values();
+insert to staff_member values();
+insert to staff_member values();
+insert to staff_member values();

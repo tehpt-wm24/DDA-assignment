@@ -1,0 +1,7 @@
+create table staff_member (
+	staff_id	number(4)	not null,
+	staff_name	varchar(15)	not null,
+	date_join	date,
+	birth_date	date,
+primary key(staff_id)
+);

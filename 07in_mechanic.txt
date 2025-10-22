@@ -1,0 +1,4 @@
+insert to mechanic values();
+insert to mechanic values();
+insert to mechanic values();
+insert to mechanic values();
